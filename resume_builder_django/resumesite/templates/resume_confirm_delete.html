@@ -1,0 +1,9 @@
+{% extends 'home.html' %}
+{% block content %}
+<h2>Delete Resume</h2>
+<p>Are you sure you want to delete the resume "{{ resume.title }}"?</p>
+<form method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'resume-list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %} 

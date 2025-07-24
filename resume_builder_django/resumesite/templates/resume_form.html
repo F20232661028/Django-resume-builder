@@ -1,0 +1,597 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- Theme Toggle Button and CSS Variables -->
+<style>
+:root {
+    --bg-main: #f8f9fa;
+    --bg-card: #fff;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --accent-primary: #198754;
+    --accent-secondary: #0d6efd;
+    --border-color: #e9ecef;
+    --section-header-bg: linear-gradient(90deg, #198754 60%, #51cf66 100%);
+    --section-header-text: #fff;
+}
+body.dark-theme {
+    --bg-main: #181a1b;
+    --bg-card: #23272b;
+    --text-main: #f8f9fa;
+    --text-muted: #adb5bd;
+    --accent-primary: #51cf66;
+    --accent-secondary: #4dabf7;
+    --border-color: #343a40;
+    --section-header-bg: linear-gradient(90deg, #51cf66 60%, #198754 100%);
+    --section-header-text: #f8f9fa;
+}
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+    background: #23272b;
+    color: #f8f9fa;
+    border: 1px solid #343a40;
+}
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+    color: #e0e0e0;
+    opacity: 1;
+}
+body.dark-theme .form-text {
+    color: #e0e0e0 !important;
+}
+.theme-toggle-btn {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 1000;
+    background: var(--bg-card);
+    color: var(--accent-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(25,135,84,0.07);
+    transition: background 0.2s, color 0.2s;
+}
+.theme-toggle-btn:hover {
+    background: var(--accent-primary);
+    color: var(--section-header-text);
+}
+.container.py-5 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+}
+.card.shadow-lg {
+    background: var(--bg-card);
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+.resume-form-section {
+    margin-bottom: 2.5rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(25,135,84,0.07);
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border-color);
+}
+.resume-form-section:not(:last-child) {
+    border-bottom: 2px solid var(--border-color);
+}
+.formset-entry {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    background: var(--bg-main);
+    transition: box-shadow 0.2s;
+}
+.formset-entry:hover {
+    box-shadow: 0 2px 8px rgba(25,135,84,0.12);
+}
+.formset-label {
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+}
+.formset-delete {
+    float: right;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.section-header {
+    font-size: 1.5rem;
+    color: var(--section-header-text);
+    background: var(--section-header-bg);
+    border-radius: 8px 8px 0 0;
+    padding: 1rem 1.5rem;
+    margin: -2rem -1.5rem 2rem -1.5rem;
+    box-shadow: 0 2px 8px rgba(25,135,84,0.10);
+}
+.form-check-label {
+    color: #dc3545;
+    font-weight: 500;
+}
+.btn-success {
+    background: var(--section-header-bg);
+    border: none;
+}
+.btn-success:hover {
+    background: linear-gradient(90deg, #51cf66 60%, #198754 100%);
+}
+.btn-lg {
+    font-size: 1.2rem;
+    padding: 0.75rem 2.5rem;
+}
+.remove-help {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    background: #d1ecf1;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+.highlight-uncheck {
+    animation: highlightUncheck 1s;
+}
+@keyframes highlightUncheck {
+    0% { background: #fff3cd; }
+    100% { background: var(--bg-main); }
+}
+@media print {
+    .btn, .resume-form-section { display: none !important; }
+    .container { box-shadow: none !important; }
+}
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    transition: background 0.2s, color 0.2s;
+}
+</style>
+<!-- Flatpickr CSS and theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/bootstrap_green.css">
+<!-- Add Select2 CSS for skill autocomplete -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<div class="container py-5">
+    <div class="card shadow-lg mb-4 border-0">
+        <div class="card-body">
+            <form method="post" novalidate id="resume-form">
+                {% csrf_token %}
+                <div class="resume-form-section">
+                    <div class="section-header"><i class="bi bi-person-circle me-2"></i>Personal Information</div>
+                    {{ form|crispy }}
+                </div>
+                <div class="resume-form-section">
+                    <div class="section-header"><i class="bi bi-briefcase-fill me-2"></i>Professional Experience</div>
+                    <div class="remove-help"><i class="bi bi-info-circle"></i> Add all relevant work experiences, starting with your most recent. Use clear job titles and describe your impact. <br> <span data-toggle="tooltip" title="e.g., Software Engineer">Example: Software Engineer</span></div>
+                    {{ experience_formset.management_form }}
+                    <div id="experience-formset">
+                    {% for exp_form in experience_formset %}
+                        <div class="formset-entry experience-form">
+                            {% if exp_form.errors %}
+                                <div class="alert alert-danger">{{ exp_form.errors }}</div>
+                            {% endif %}
+                            {% for field in exp_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {% if field.name == 'start_date' or field.name == 'end_date' %}
+                                        <div class="form-group">
+                                            {{ field.label_tag }} {{ field }}
+                                            {% if field.help_text %}
+                                                <small class="form-text text-muted">{{ field.help_text }}</small>
+                                            {% endif %}
+                                            {% if field.errors %}
+                                                <div class="text-danger">{{ field.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        {{ field|as_crispy_field }}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-experience ml-2">Remove</button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <button type="button" class="btn btn-outline-success" id="add-experience">Add Experience</button>
+                    <div id="empty-experience-form" style="display:none;">
+                        <div class="formset-entry experience-form">
+                            {% for field in experience_formset.empty_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-experience ml-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-form-section">
+                    <div class="section-header"><i class="bi bi-mortarboard-fill me-2"></i>Education</div>
+                    <div class="remove-help"><i class="bi bi-info-circle"></i> List your degrees, schools, and years attended. Include your GPA or score if relevant. <br> <span data-toggle="tooltip" title="e.g., BSc Computer Science">Example: BSc Computer Science</span></div>
+                    {{ education_formset.management_form }}
+                    <div id="education-formset">
+                    {% for edu_form in education_formset %}
+                        <div class="formset-entry education-form">
+                            {% if edu_form.errors %}
+                                <div class="alert alert-danger">{{ edu_form.errors }}</div>
+                            {% endif %}
+                            {% for field in edu_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-education ml-2">Remove</button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <button type="button" class="btn btn-outline-success" id="add-education">Add Education</button>
+                    <div id="empty-education-form" style="display:none;">
+                        <div class="formset-entry education-form">
+                            {% for field in education_formset.empty_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-education ml-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-form-section">
+                    <div class="section-header"><i class="bi bi-stars me-2"></i>Key Skills</div>
+                    <div class="remove-help"><i class="bi bi-info-circle"></i> List your most relevant skills. Use the autocomplete to quickly add common skills. <br> <span data-toggle="tooltip" title="e.g., Python, Project Management">Example: Python, Project Management</span></div>
+                    {{ skill_formset.management_form }}
+                    <div id="skill-formset">
+                    {% for skill_form in skill_formset %}
+                        <div class="formset-entry skill-form">
+                            {% if skill_form.errors %}
+                                <div class="alert alert-danger">{{ skill_form.errors }}</div>
+                            {% endif %}
+                            {% for field in skill_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-skill ml-2">Remove</button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <button type="button" class="btn btn-outline-success" id="add-skill">Add Skill</button>
+                    <div id="empty-skill-form" style="display:none;">
+                        <div class="formset-entry skill-form">
+                            {% for field in skill_formset.empty_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-skill ml-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-form-section">
+                    <div class="section-header"><i class="bi bi-award me-2"></i>Certifications</div>
+                    <div class="remove-help"><i class="bi bi-info-circle"></i> Add certifications and licenses that are relevant to your career. <br> <span data-toggle="tooltip" title="e.g., AWS Certified Solutions Architect">Example: AWS Certified Solutions Architect</span></div>
+                    {{ certification_formset.management_form }}
+                    <div id="certification-formset">
+                    {% for cert_form in certification_formset %}
+                        <div class="formset-entry certification-form">
+                            {% if cert_form.errors %}
+                                <div class="alert alert-danger">{{ cert_form.errors }}</div>
+                            {% endif %}
+                            {% for field in cert_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-certification ml-2">Remove</button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <button type="button" class="btn btn-outline-success" id="add-certification">Add Certification</button>
+                    <div id="empty-certification-form" style="display:none;">
+                        <div class="formset-entry certification-form">
+                            {% for field in certification_formset.empty_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-certification ml-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-form-section">
+                    <div class="section-header"><i class="bi bi-kanban me-2"></i>Projects</div>
+                    <div class="remove-help"><i class="bi bi-info-circle"></i> Add projects that showcase your skills and achievements. <br> <span data-toggle="tooltip" title="e.g., Portfolio Website">Example: Portfolio Website</span></div>
+                    {{ project_formset.management_form }}
+                    <div id="project-formset">
+                    {% for proj_form in project_formset %}
+                        <div class="formset-entry project-form">
+                            {% if proj_form.errors %}
+                                <div class="alert alert-danger">{{ proj_form.errors }}</div>
+                            {% endif %}
+                            {% for field in proj_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-project ml-2">Remove</button>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <button type="button" class="btn btn-outline-success" id="add-project">Add Project</button>
+                    <div id="empty-project-form" style="display:none;">
+                        <div class="formset-entry project-form">
+                            {% for field in project_formset.empty_form %}
+                                {% if field.name != 'DELETE' %}
+                                    {{ field|as_crispy_field }}
+                                {% endif %}
+                            {% endfor %}
+                            <button type="button" class="btn btn-danger btn-sm remove-project ml-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-success btn-lg shadow">Save Resume</button>
+                </div>
+                {% if form.errors %}
+                    <div class="alert alert-danger mt-3">
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- Add Select2 JS for skill autocomplete -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+// Auto-uncheck Mark for Removal if user edits any field in a formset entry
+function setupAutoUncheck(formsetPrefix) {
+    document.querySelectorAll('.formset-entry').forEach(function(entry) {
+        var checkbox = entry.querySelector('input[type="checkbox"][name*="DELETE"]');
+        if (!checkbox) return;
+        entry.querySelectorAll('input, textarea, select').forEach(function(input) {
+            if (input.type === 'checkbox' && input === checkbox) return;
+            input.addEventListener('input', function() {
+                if (checkbox.checked) {
+                    checkbox.checked = false;
+                    entry.classList.add('highlight-uncheck');
+                    setTimeout(function() { entry.classList.remove('highlight-uncheck'); }, 1000);
+                }
+            });
+        });
+    });
+}
+setupAutoUncheck('experience');
+setupAutoUncheck('education');
+setupAutoUncheck('skill');
+setupAutoUncheck('certification');
+setupAutoUncheck('project');
+
+// Initialize Flatpickr on all date inputs
+// Wait for DOMContentLoaded to ensure all formset fields are present
+
+function initFlatpickr() {
+    $('.flatpickr').flatpickr({
+        dateFormat: "Y-m-d",
+        allowInput: true,
+        theme: "bootstrap_green",
+        appendTo: document.body // Fixes popup clipping
+    });
+}
+// On page load
+$(document).ready(function() {
+    initFlatpickr();
+});
+// After adding a new formset entry
+$('#add-experience, #add-education, #add-skill, #add-certification, #add-project').click(function() {
+    setTimeout(initFlatpickr, 100);
+});
+
+// Theme toggle logic
+const themeToggleBtn = document.getElementById('theme-toggle');
+function setTheme(dark) {
+    if (dark) {
+        document.body.classList.add('dark-theme');
+        themeToggleBtn.innerHTML = '☀️ Light Mode';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-theme');
+        themeToggleBtn.innerHTML = '🌙 Dark Mode';
+        localStorage.setItem('theme', 'light');
+    }
+}
+themeToggleBtn.addEventListener('click', function() {
+    setTheme(!document.body.classList.contains('dark-theme'));
+});
+// On load, set theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+    setTheme(true);
+} else {
+    setTheme(false);
+}
+
+// Dynamic formset logic for experience, education, skill
+$(function() {
+    function updateFormsetIndexes(prefix) {
+        var forms = $('#' + prefix + '-formset .formset-entry');
+        forms.each(function(i) {
+            $(this).find(':input').each(function() {
+                var name = $(this).attr('name');
+                if (name) {
+                    var newName = name.replace(/-\d+-/, '-' + i + '-');
+                    $(this).attr('name', newName);
+                    $(this).attr('id', 'id_' + newName);
+                }
+            });
+        });
+        $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
+    }
+    // Add Experience
+    $('#add-experience').click(function() {
+        var tmpl = $('#empty-experience-form').html().replace(/__prefix__/g, $('#experience-formset .formset-entry').length);
+        $('#experience-formset').append(tmpl);
+        updateFormsetIndexes('experience');
+    });
+    // Remove Experience
+    $('#experience-formset').on('click', '.remove-experience', function() {
+        var forms = $('#experience-formset .formset-entry');
+        if (forms.length > 1) {
+            $(this).closest('.formset-entry').remove();
+            updateFormsetIndexes('experience');
+        } else {
+            alert('At least one experience entry is required.');
+        }
+    });
+    // Add Education
+    $('#add-education').click(function() {
+        var tmpl = $('#empty-education-form').html().replace(/__prefix__/g, $('#education-formset .formset-entry').length);
+        $('#education-formset').append(tmpl);
+        updateFormsetIndexes('education');
+    });
+    // Remove Education
+    $('#education-formset').on('click', '.remove-education', function() {
+        var forms = $('#education-formset .formset-entry');
+        if (forms.length > 1) {
+            $(this).closest('.formset-entry').remove();
+            updateFormsetIndexes('education');
+        } else {
+            alert('At least one education entry is required.');
+        }
+    });
+    // Add Skill
+    $('#add-skill').click(function() {
+        var tmpl = $('#empty-skill-form').html().replace(/__prefix__/g, $('#skill-formset .formset-entry').length);
+        $('#skill-formset').append(tmpl);
+        updateFormsetIndexes('skill');
+    });
+    // Remove Skill
+    $('#skill-formset').on('click', '.remove-skill', function() {
+        var forms = $('#skill-formset .formset-entry');
+        if (forms.length > 1) {
+            $(this).closest('.formset-entry').remove();
+            updateFormsetIndexes('skill');
+        } else {
+            alert('At least one skill entry is required.');
+        }
+    });
+    // Remove Certification
+    $('#certification-formset').on('click', '.remove-certification', function() {
+        var forms = $('#certification-formset .formset-entry');
+        if (forms.length > 1) {
+            $(this).closest('.formset-entry').remove();
+            updateFormsetIndexes('certification');
+        } else {
+            alert('At least one certification entry is required.');
+        }
+    });
+    // Add Certification
+    $('#add-certification').click(function() {
+        var tmpl = $('#empty-certification-form').html().replace(/__prefix__/g, $('#certification-formset .formset-entry').length);
+        $('#certification-formset').append(tmpl);
+        updateFormsetIndexes('certification');
+    });
+    // Remove Project
+    $('#project-formset').on('click', '.remove-project', function() {
+        var forms = $('#project-formset .formset-entry');
+        if (forms.length > 1) {
+            $(this).closest('.formset-entry').remove();
+            updateFormsetIndexes('project');
+        } else {
+            alert('At least one project entry is required.');
+        }
+    });
+    // Add Project
+    $('#add-project').click(function() {
+        var tmpl = $('#empty-project-form').html().replace(/__prefix__/g, $('#project-formset .formset-entry').length);
+        $('#project-formset').append(tmpl);
+        updateFormsetIndexes('project');
+    });
+});
+// Enable Bootstrap tooltips
+document.addEventListener("DOMContentLoaded", function() {
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+});
+// Skill autocomplete with Select2
+$(document).ready(function() {
+    function initSkillAutocomplete() {
+        $("input[name$='-name']").each(function() {
+            if (!$(this).hasClass('select2-hidden-accessible')) {
+                $(this).select2({
+                    tags: true,
+                    width: '100%',
+                    placeholder: 'e.g., Python',
+                    data: [
+                        {id: 'Python', text: 'Python'},
+                        {id: 'JavaScript', text: 'JavaScript'},
+                        {id: 'Project Management', text: 'Project Management'},
+                        {id: 'Django', text: 'Django'},
+                        {id: 'React', text: 'React'},
+                        {id: 'AWS', text: 'AWS'},
+                        {id: 'SQL', text: 'SQL'},
+                        {id: 'Communication', text: 'Communication'},
+                        {id: 'Leadership', text: 'Leadership'},
+                        {id: 'Java', text: 'Java'},
+                        {id: 'C++', text: 'C++'},
+                        {id: 'HTML', text: 'HTML'},
+                        {id: 'CSS', text: 'CSS'},
+                        {id: 'Git', text: 'Git'},
+                        {id: 'Linux', text: 'Linux'}
+                    ]
+                });
+            }
+        });
+    }
+    initSkillAutocomplete();
+    $('#add-skill').click(function() {
+        setTimeout(initSkillAutocomplete, 100);
+    });
+});
+// Real-time validation and field highlighting
+$(document).on('input change', 'input, textarea, select', function() {
+    var $field = $(this);
+    var value = $field.val();
+    if ($field.prop('required') && (!value || value.trim() === '')) {
+        $field.addClass('is-invalid').removeClass('is-valid');
+    } else {
+        $field.addClass('is-valid').removeClass('is-invalid');
+    }
+});
+// Character counters for long text fields
+$(document).ready(function() {
+    $('textarea[maxlength], input[maxlength]').each(function() {
+        var $field = $(this);
+        var max = $field.attr('maxlength');
+        var $counter = $('<small class="form-text text-muted char-counter"></small>');
+        $field.after($counter);
+        $field.on('input', function() {
+            var len = $field.val().length;
+            $counter.text(len + ' / ' + max + ' characters');
+        });
+        $field.trigger('input');
+    });
+});
+// Date pickers: restrict end date to not be before start date
+$(document).on('change', 'input.flatpickr', function() {
+    var $input = $(this);
+    var name = $input.attr('name');
+    if (name && (name.endsWith('-end_date') || name.endsWith('-end_year') || name.endsWith('-end_date'))) {
+        var prefix = name.split('-')[0];
+        var startInput = $("input[name='" + prefix + "-start_date']");
+        if (startInput.length && $input.val() && startInput.val() && $input.val() < startInput.val()) {
+            $input.addClass('is-invalid');
+            startInput.addClass('is-invalid');
+        } else {
+            $input.removeClass('is-invalid');
+            startInput.removeClass('is-invalid');
+        }
+    }
+});
+</script>
+{% endblock %} 

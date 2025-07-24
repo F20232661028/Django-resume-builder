@@ -1,0 +1,9 @@
+{% extends 'home.html' %}
+{% block content %}
+<h2>{% if form.instance.pk %}Edit Experience{% else %}Add Experience{% endif %}</h2>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'resume-detail' resume_id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %} 

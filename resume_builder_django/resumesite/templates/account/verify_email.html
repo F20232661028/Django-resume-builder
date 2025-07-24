@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white">
+                    <h2 class="mb-0">Verify Email</h2>
+                </div>
+                <div class="card-body">
+                    <p>We have sent an email to <strong>{{ email }}</strong> for verification. Please check your inbox and follow the instructions to verify your email address.</p>
+                    <div class="mt-3 text-center">
+                        <a href="{% url 'account_login' %}" class="btn btn-info">Back to login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

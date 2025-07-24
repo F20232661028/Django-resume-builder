@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #fff;
+    color: #222;
+}
+
+.resume {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-radius: 8px;
+}
+
+.resume-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.resume-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 700;
+}
+.resume-title {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0.5rem 0;
+}
+.resume-header address {
+    font-style: normal;
+    color: #444;
+    font-size: 1rem;
+}
+.resume-summary, .resume-experience, .resume-education, .resume-skills {
+    margin-bottom: 1.5rem;
+}
+.resume-summary h2, .resume-experience h2, .resume-education h2, .resume-skills h2 {
+    font-size: 1.3rem;
+    color: #198754;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #198754;
+    padding-left: 0.5rem;
+}
+.resume-experience article, .resume-education article {
+    margin-bottom: 1rem;
+}
+.resume-experience h3, .resume-education h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.2rem 0;
+    font-weight: 700;
+}
+.resume-experience .date, .resume-education .date {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 0.3rem;
+}
+.resume-skills ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.resume-skills li {
+    background: #f3f3f3;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+/* Responsive Layout */
+@media (max-width: 600px) {
+    .resume {
+        padding: 1rem;
+    }
+    .resume-header h1 {
+        font-size: 1.5rem;
+    }
+    .resume-summary h2, .resume-experience h2, .resume-education h2, .resume-skills h2 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Print Styles for A4 */
+@page {
+    size: A4;
+    margin: 1.5cm;
+}
+
+@media print {
+    body {
+        background: #fff !important;
+    }
+    .resume {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        max-width: 100%;
+    }
+    .resume-header, .resume-summary, .resume-experience, .resume-education, .resume-skills {
+        page-break-inside: avoid;
+    }
+} 

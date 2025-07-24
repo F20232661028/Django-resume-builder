@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-secondary text-white">
+                    <h2 class="mb-0">Manage Email Addresses</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-secondary btn-block mt-3">Update Emails</button>
+                    </form>
+                    <hr>
+                    <h5>Current Email Addresses</h5>
+                    <ul>
+                        {% for emailaddress in emailaddresses %}
+                            <li>
+                                {{ emailaddress.email }} {% if emailaddress.primary %}(Primary){% endif %} {% if not emailaddress.verified %}<span class="badge badge-warning">Unverified</span>{% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="mt-3 text-center">
+                        <a href="{% url 'account_logout' %}">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

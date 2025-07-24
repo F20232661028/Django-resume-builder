@@ -1,0 +1,8 @@
+Hi {{ user.get_full_name|default:user.username }},
+
+Welcome to ProResume Builder!
+
+We're excited to have you on board. If you have any questions, just reply to this email.
+
+Best regards,
+The ProResume Builder Team 

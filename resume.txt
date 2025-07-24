@@ -1,0 +1,610 @@
+ll 7.5.2
+PS C:\Users\MIche\OneDrive\Desktop> # 1. Clone the repo
+PS C:\Users\MIche\OneDrive\Desktop> git clone https://github.com/Aafiya-H/Django-Resume-Builder.git
+Cloning into 'Django-Resume-Builder'...
+remote: Enumerating objects: 8247, done.
+remote: Counting objects: 100% (325/325), done.
+remote: Compressing objects: 100% (128/128), done.
+remote: Total 8247 (delta 166), reused 323 (delta 166), pack-reused 7922 (from 1)
+Receiving objects: 100% (8247/8247), 11.04 MiB | 178.00 KiB/s, done.
+Resolving deltas: 100% (2209/2209), done.
+Updating files: 100% (11501/11501), done.
+PS C:\Users\MIche\OneDrive\Desktop> cd Django-Resume-Builder
+PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder>
+PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> # 2. Create and activate a virtual environment
+PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> python -m venv env
+PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> .\env\Scripts\activate
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder>
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> # 3. Install dependencies
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> pip install -r requirements.txt
+ERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder>
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> # 4. Run migrations
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder> cd resume_builder_django
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py migrate
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 10, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 12, in main
+    raise ImportError(
+    ...<3 lines>...
+    ) from exc
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django>
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> # 5. Run the development server
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py runserver
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 10, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 12, in main
+    raise ImportError(
+    ...<3 lines>...
+    ) from exc
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> pip install django
+Collecting django
+  Using cached django-5.2.4-py3-none-any.whl.metadata (4.1 kB)
+Collecting asgiref>=3.8.1 (from django)
+  Using cached asgiref-3.9.1-py3-none-any.whl.metadata (9.3 kB)
+Collecting sqlparse>=0.3.1 (from django)
+  Using cached sqlparse-0.5.3-py3-none-any.whl.metadata (3.9 kB)
+Collecting tzdata (from django)
+  Using cached tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Using cached django-5.2.4-py3-none-any.whl (8.3 MB)
+Using cached asgiref-3.9.1-py3-none-any.whl (23 kB)
+Using cached sqlparse-0.5.3-py3-none-any.whl (44 kB)
+Using cached tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Installing collected packages: tzdata, sqlparse, asgiref, django
+Successfully installed asgiref-3.9.1 django-5.2.4 sqlparse-0.5.3 tzdata-2025.2
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> pip install django-crispy-forms
+Collecting django-crispy-forms
+  Using cached django_crispy_forms-2.4-py3-none-any.whl.metadata (5.2 kB)
+Requirement already satisfied: django>=4.2 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django-crispy-forms) (5.2.4)
+Requirement already satisfied: asgiref>=3.8.1 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django>=4.2->django-crispy-forms) (3.9.1)
+Requirement already satisfied: sqlparse>=0.3.1 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django>=4.2->django-crispy-forms) (0.5.3)
+Requirement already satisfied: tzdata in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django>=4.2->django-crispy-forms) (2025.2)
+Using cached django_crispy_forms-2.4-py3-none-any.whl (31 kB)
+Installing collected packages: django-crispy-forms
+Successfully installed django-crispy-forms-2.4
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> pip install pillow
+Collecting pillow
+  Using cached pillow-11.3.0-cp313-cp313-win_amd64.whl.metadata (9.2 kB)
+Using cached pillow-11.3.0-cp313-cp313-win_amd64.whl (7.0 MB)
+Installing collected packages: pillow
+Successfully installed pillow-11.3.0
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> cd resume_builder_django
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> python manage.py migrate
+C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Scripts\python.exe: can't open file 'C:\\Users\\MIche\\OneDrive\\Desktop\\Django-Resume-Builder\\resume_builder_django\\resume_builder_django\\manage.py': [Errno 2] No such file or directory
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> python manage.py runserver
+C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Scripts\python.exe: can't open file 'C:\\Users\\MIche\\OneDrive\\Desktop\\Django-Resume-Builder\\resume_builder_django\\resume_builder_django\\manage.py': [Errno 2] No such file or directory
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> dir
+
+    Directory: C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           7/16/2025  5:25 PM                __pycache__
+-a---           7/16/2025  5:25 PM              0 __init__.py
+-a---           7/16/2025  5:25 PM           3293 settings.py
+-a---           7/16/2025  5:25 PM            178 urls.py
+-a---           7/16/2025  5:25 PM            417 wsgi.py
+
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> cd ..
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py migrate
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 408, in run_from_argv
+    parser = self.create_parser(argv[0], argv[1])
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 371, in create_parser
+    self.add_arguments(parser)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\migrate.py", line 45, in add_arguments
+    choices=tuple(connections),
+            ~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 73, in __iter__
+    return iter(self.settings)
+                ^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 45, in settings
+    self._settings = self.configure_settings(self._settings)
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\db\utils.py", line 148, in configure_settings
+    databases = super().configure_settings(databases)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 50, in configure_settings
+    settings = getattr(django_settings, self.settings_name)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 2, in <module>
+    import django_heroku
+ModuleNotFoundError: No module named 'django_heroku'
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py runserver
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 416, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\runserver.py", line 69, in execute
+    super().execute(*args, **options)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 460, in execute
+    output = self.handle(*args, **options)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\runserver.py", line 80, in handle
+    if not settings.DEBUG and not settings.ALLOWED_HOSTS:
+           ^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 2, in <module>
+    import django_heroku
+ModuleNotFoundError: No module named 'django_heroku'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 429, in run_from_argv
+    connections.close_all()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 84, in close_all
+    for conn in self.all(initialized_only=True):
+                ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 78, in all
+    for alias in self
+                 ^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 73, in __iter__
+    return iter(self.settings)
+                ^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 45, in settings
+    self._settings = self.configure_settings(self._settings)
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\db\utils.py", line 148, in configure_settings
+    databases = super().configure_settings(databases)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 50, in configure_settings
+    settings = getattr(django_settings, self.settings_name)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 2, in <module>
+    import django_heroku
+ModuleNotFoundError: No module named 'django_heroku'
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> pip install django-heroku
+Collecting django-heroku
+  Using cached django_heroku-0.3.1-py2.py3-none-any.whl.metadata (2.6 kB)
+Collecting dj-database-url>=0.5.0 (from django-heroku)
+  Downloading dj_database_url-3.0.1-py3-none-any.whl.metadata (14 kB)
+Collecting whitenoise (from django-heroku)
+  Downloading whitenoise-6.9.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting psycopg2 (from django-heroku)
+  Downloading psycopg2-2.9.10-cp313-cp313-win_amd64.whl.metadata (4.8 kB)
+Requirement already satisfied: django in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django-heroku) (5.2.4)
+Requirement already satisfied: asgiref>=3.8.1 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django->django-heroku) (3.9.1)
+Requirement already satisfied: sqlparse>=0.3.1 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django->django-heroku) (0.5.3)
+Requirement already satisfied: tzdata in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django->django-heroku) (2025.2)
+Downloading django_heroku-0.3.1-py2.py3-none-any.whl (6.2 kB)
+Downloading dj_database_url-3.0.1-py3-none-any.whl (8.8 kB)
+Downloading psycopg2-2.9.10-cp313-cp313-win_amd64.whl (2.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.6/2.6 MB 196.3 kB/s eta 0:00:00
+Downloading whitenoise-6.9.0-py3-none-any.whl (20 kB)
+Installing collected packages: whitenoise, psycopg2, dj-database-url, django-heroku
+Successfully installed dj-database-url-3.0.1 django-heroku-0.3.1 psycopg2-2.9.10 whitenoise-6.9.0
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py migrate
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 408, in run_from_argv
+    parser = self.create_parser(argv[0], argv[1])
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 371, in create_parser
+    self.add_arguments(parser)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\migrate.py", line 45, in add_arguments
+    choices=tuple(connections),
+            ~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 73, in __iter__
+    return iter(self.settings)
+                ^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 45, in settings
+    self._settings = self.configure_settings(self._settings)
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\db\utils.py", line 148, in configure_settings
+    databases = super().configure_settings(databases)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 50, in configure_settings
+    settings = getattr(django_settings, self.settings_name)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 3, in <module>
+    import config
+ModuleNotFoundError: No module named 'config'
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py runserver
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 416, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\runserver.py", line 69, in execute
+    super().execute(*args, **options)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 460, in execute
+    output = self.handle(*args, **options)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\runserver.py", line 80, in handle
+    if not settings.DEBUG and not settings.ALLOWED_HOSTS:
+           ^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 3, in <module>
+    import config
+ModuleNotFoundError: No module named 'config'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 429, in run_from_argv
+    connections.close_all()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 84, in close_all
+    for conn in self.all(initialized_only=True):
+                ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 78, in all
+    for alias in self
+                 ^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 73, in __iter__
+    return iter(self.settings)
+                ^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 45, in settings
+    self._settings = self.configure_settings(self._settings)
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\db\utils.py", line 148, in configure_settings
+    databases = super().configure_settings(databases)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 50, in configure_settings
+    settings = getattr(django_settings, self.settings_name)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 3, in <module>
+    import config
+ModuleNotFoundError: No module named 'config'
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django>
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> import config
+import: The term 'import' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> cd C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> import os
+import: The term 'import' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django>
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dummy-secret-key-for-dev")
+SECRET_KEY: The term 'SECRET_KEY' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> DEBUG = os.environ.get("DJANGO_DEBUG", "True") == "True"
+DEBUG: The term 'DEBUG' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> python manage.py migrate
+C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Scripts\python.exe: can't open file 'C:\\Users\\MIche\\OneDrive\\Desktop\\Django-Resume-Builder\\resume_builder_django\\resume_builder_django\\manage.py': [Errno 2] No such file or directory
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django> cd ..
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py migrate
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 21, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 408, in run_from_argv
+    parser = self.create_parser(argv[0], argv[1])
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\base.py", line 371, in create_parser
+    self.add_arguments(parser)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\management\commands\migrate.py", line 45, in add_arguments
+    choices=tuple(connections),
+            ~~~~~^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 73, in __iter__
+    return iter(self.settings)
+                ^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 45, in settings
+    self._settings = self.configure_settings(self._settings)
+                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\db\utils.py", line 148, in configure_settings
+    databases = super().configure_settings(databases)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\utils\connection.py", line 50, in configure_settings
+    settings = getattr(django_settings, self.settings_name)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.1520.0_x64__qbz5n2kfra8p0\Lib\importlib\__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resume_builder_django\settings.py", line 3, in <module>
+    import config
+ModuleNotFoundError: No module named 'config'
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying auth.0012_alter_user_first_name_max_length... OK
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 16, 2025 - 17:35:45
+Django version 5.2.4, using settings 'resume_builder_django.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\base.py", line 1075, in render
+    output = self.filter_expression.resolve(context)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\base.py", line 749, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\crispy_forms\templatetags\crispy_forms_filters.py", line 58, in as_crispy_form
+    template = uni_form_template(template_pack)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\crispy_forms\templatetags\crispy_forms_filters.py", line 21, in uni_form_template
+    return get_template("%s/uni_form.html" % template_pack)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django\resumesite\views.py", line 67, in info
+    return render(request,'info.html',{'form':form})
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\env\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: bootstrap4/uni_form.html
+[16/Jul/2025 17:35:50] "GET / HTTP/1.1" 500 136880
+Not Found: /favicon.ico
+[16/Jul/2025 17:35:51] "GET /favicon.ico HTTP/1.1" 404 2722
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 16, 2025 - 17:36:03
+Django version 5.2.4, using settings 'resume_builder_django.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> pip install crispy-bootstrap4
+Collecting crispy-bootstrap4
+  Downloading crispy_bootstrap4-2025.6-py3-none-any.whl.metadata (2.5 kB)
+Requirement already satisfied: django>=4.2 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from crispy-bootstrap4) (5.2.4)
+Requirement already satisfied: django-crispy-forms>=2.3 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from crispy-bootstrap4) (2.4)
+Requirement already satisfied: asgiref>=3.8.1 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django>=4.2->crispy-bootstrap4) (3.9.1)
+Requirement already satisfied: sqlparse>=0.3.1 in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django>=4.2->crispy-bootstrap4) (0.5.3)
+Requirement already satisfied: tzdata in c:\users\miche\onedrive\desktop\django-resume-builder\env\lib\site-packages (from django>=4.2->crispy-bootstrap4) (2025.2)
+Downloading crispy_bootstrap4-2025.6-py3-none-any.whl (23 kB)
+Installing collected packages: crispy-bootstrap4
+Successfully installed crispy-bootstrap4-2025.6
+(env) PS C:\Users\MIche\OneDrive\Desktop\Django-Resume-Builder\resume_builder_django> python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+July 16, 2025 - 17:39:02
+Django version 5.2.4, using settings 'resume_builder_django.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+[16/Jul/2025 17:39:31] "GET / HTTP/1.1" 200 14099
+[16/Jul/2025 17:40:45] "POST / HTTP/1.1" 200 4296
+[16/Jul/2025 17:40:45] "GET /static/images/headshot.jpg HTTP/1.1" 200 5449
+[16/Jul/2025 17:40:45] "GET /static/css/style.css HTTP/1.1" 200 9592
+[16/Jul/2025 17:41:07] "GET / HTTP/1.1" 200 14099
+[16/Jul/2025 17:41:11] "POST / HTTP/1.1" 200 4296
+[16/Jul/2025 17:41:23] "GET / HTTP/1.1" 200 14099
+
+
+
+
+
+

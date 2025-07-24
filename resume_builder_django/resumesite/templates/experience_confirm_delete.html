@@ -1,0 +1,9 @@
+{% extends 'home.html' %}
+{% block content %}
+<h2>Delete Experience</h2>
+<p>Are you sure you want to delete the experience entry for "{{ object.job_title }} at {{ object.company }}"?</p>
+<form method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'resume-detail' object.resume.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %} 

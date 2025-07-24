@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block content %}
+<h2>Your Resumes</h2>
+<a href="{% url 'resume-create' %}" class="btn btn-success mb-3">Create New Resume</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for resume in resumes %}
+        <tr>
+            <td>{{ resume.title }}</td>
+            <td>{{ resume.created_at|date:'Y-m-d' }}</td>
+            <td>
+                <a href="{% url 'resume-detail' resume.pk %}" class="btn btn-primary btn-sm">View</a>
+                <a href="{% url 'resume-update' resume.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'resume-delete' resume.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'resume-detail' resume.pk %}?print=1" class="btn btn-outline-secondary btn-sm" target="_blank" title="Print this resume"><i class="bi bi-printer"></i> Print</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No resumes found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %} 
